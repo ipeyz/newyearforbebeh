@@ -38,7 +38,7 @@
       backdrop-filter: blur(10px);
       border-radius: 20px;
       padding: 30px;
-      max-width: 800px;
+      max-width: 900px;
       color: #ffe6f0;
       box-shadow: 0 0 40px rgba(255, 105, 180, 0.5);
     }
@@ -53,6 +53,7 @@
       font-size: 1.05rem;
       line-height: 1.8;
       color: #ffd6e8;
+      white-space: pre-wrap; /* preserves paragraph spacing */
     }
 
     .year {
@@ -61,6 +62,26 @@
       color: #ff9acb;
       letter-spacing: 3px;
     }
+
+    /* Click-to-start overlay */
+    #startOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      color: #ff69b4;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      cursor: pointer;
+      text-align: center;
+      padding: 20px;
+    }
+
   </style>
 </head>
 <body>
@@ -72,22 +93,26 @@
     <h1>Happy New Year, Sayang</h1>
 
     <p>
-      As this year comes to an end and a new one begins, I keep thinking about everything we’ve been through together and how much it all means to me, because every moment with you, sayang, has shaped my heart in ways I never expected. We didn’t just share good times, we shared growth, misunderstandings, lessons, patience, and forgiveness, and all of that made our bond stronger and more real. There were days when things weren’t easy, days when we had to learn how to understand each other better, but we never gave up, and that’s what makes this love so special to me. You’ve been there through my ups and downs, through my overthinking and my silence, through my happiness and my struggles, and knowing that you chose to stay means more to me than words can fully describe.
-      <br><br>
-      As we step into 2026 and turn 17 together, it feels like a new chapter not just in time, but in us, a chapter filled with more dreams, more maturity, and more love. I’m grateful for you, I cherish you, and I carry my love for you into this new year and every year that comes after.
+As this year comes to an end and a new one begins, I keep thinking about everything we’ve been through together and how much it all means to me, because every moment with you, sayang, has shaped my heart in ways I never expected. We didn’t just share good times, we shared growth, misunderstandings, lessons, patience, and forgiveness, and all of that made our bond stronger and more real. There were days when things weren’t easy, days when we had to learn how to understand each other better, but we never gave up, and that’s what makes this love so special to me. You’ve been there through my ups and downs, through my overthinking and my silence, through my happiness and my struggles, and knowing that you chose to stay means more to me than words can fully describe. As we step into 2026 and turn 17 together, it feels like a new chapter not just in time, but in us  a chapter filled with more dreams, more maturity, and more love. I don’t just see you as someone in my life, I see you as someone who changed my life, someone who taught me what care, trust, and real connection feel like. Loving you has taught me patience, understanding, and the importance of choosing someone even when things aren’t perfect. So as the new year begins, I wish for more memories with you, more laughter late at night, more growth side by side, and more moments where we remind each other why we started. Happy New Year, sayang  thank you for everything you are, everything you’ve been, and everything we’re still becoming. I’m grateful for you, I cherish you, and I carry my love for you into this new year and every year that comes after.
     </p>
 
     <div class="year">2026</div>
   </div>
 </div>
 
-<!-- Autoplay music -->
-<audio autoplay loop>
+<!-- Click-to-start overlay -->
+<div id="startOverlay">
+  Click anywhere to start the music and fireworks 💖🎆
+</div>
+
+<!-- Audio -->
+<audio id="bgMusic" loop>
   <source src="raisyayum.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
 <script>
+  // Fireworks code
   const canvas = document.getElementById('fireworks');
   const ctx = canvas.getContext('2d');
 
@@ -187,9 +212,16 @@
     requestAnimationFrame(animate);
   }
 
-  animate();
+  // Start overlay click
+  const startOverlay = document.getElementById('startOverlay');
+  const bgMusic = document.getElementById('bgMusic');
+
+  startOverlay.addEventListener('click', () => {
+    bgMusic.play();
+    startOverlay.style.display = 'none';
+    animate();
+  });
 </script>
 
 </body>
 </html>
-
